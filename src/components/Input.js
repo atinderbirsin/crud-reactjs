@@ -1,6 +1,6 @@
 import { useState } from "react";
 
-function Input({ name, type = "text", onChange }) {
+function Input({ label, name, type = "text", onChange }) {
   const className = "w-60 p-2 rounded-sm";
 
   const [value, setValue] = useState("");
@@ -12,7 +12,7 @@ function Input({ name, type = "text", onChange }) {
 
   return (
     <div className="flex flex-col">
-      <label>{name}</label>
+      <label>{label}</label>
       <input
         type={type}
         name={name}
