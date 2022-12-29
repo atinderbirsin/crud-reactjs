@@ -27,9 +27,22 @@ function App() {
     setUsers(response.result);
   }
 
+  async function deleteUser(id) {
+    const response = await api.remove(
+      `${process.env.REACT_APP_BASE_URL}delete`,
+      id
+    );
+
+    if (response.status === 1) {
+      const updatedUsers = users.filter((user) => user._id !== id);
+
+      setUsers(updatedUsers);
+    }
+  }
+
   return (
     <div className="flex flex-col h-screen justify-between">
-      <UserList users={users}/>
+      <UserList users={users} onDelete={deleteUser} />
       <UserCreate onSubmit={onFormSubmit} />
     </div>
   );

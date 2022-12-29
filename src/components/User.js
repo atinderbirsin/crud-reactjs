@@ -1,9 +1,18 @@
-function User({ user }) {
-  const className = `border border-2 border-white text-white border-slate-700 px-10 py-16 rounded-md inline-block flex item-center justify-center`;
+function User({ user, onDelete }) {
+  const className = `border border-2 border-white text-white h-44 rounded-md flex flex-col items-center`;
 
   return (
     <div className={className}>
-      <h2>{user.fullName}</h2>
+      <div className="h-full self-end">
+        <div className="flex items-center justify-center gap-2 p-2 cursor-pointer">
+          <i className="fa fa-pencil"></i>
+          <i className="fa fa-minus-circle" onClick={() => onDelete(user._id)}></i>
+        </div>
+      </div>
+
+      <div className="h-full">
+        <h2>{user.fullName}</h2>
+      </div>
     </div>
   );
 }
