@@ -18,10 +18,17 @@ async function remove(url, id) {
    return response.data;
 }
 
+async function update(url, user) {
+    const response = await axios.patch(url, user);
+
+    return response.data;
+}
+
 const functions = {
   create,
   list,
   remove,
+  update,
 };
 
 export default functions;

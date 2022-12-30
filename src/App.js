@@ -40,9 +40,24 @@ function App() {
     }
   }
 
+  async function onUserUpdate(user) {
+    const response = await api.update(`${process.env.REACT_APP_BASE_URL}update`, user);
+
+    if (response.status === 1) {
+        const updatedUsers = users.map(u => {
+            if (u._id === user._id) {
+                return {...u, ...user}
+            }
+            return u;
+        })
+
+        setUsers([...updatedUsers])
+    }
+  }
+
   return (
     <div className="flex flex-col h-screen justify-between">
-      <UserList users={users} onDelete={deleteUser} />
+      <UserList users={users} onDelete={deleteUser} onUpdate={onUserUpdate}/>
       <UserCreate onSubmit={onFormSubmit} />
     </div>
   );

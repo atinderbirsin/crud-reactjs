@@ -1,13 +1,13 @@
 import { useState } from "react";
 
-function Input({ label, name, type = "text", onChange }) {
+function Input({ label, name, type = "text", onChange, value }) {
   const className = "w-60 p-2 rounded-sm";
 
-  const [value, setValue] = useState("");
+  const [val, setVal] = useState("");
 
   function onInputChange(e) {
     onChange({ [name]: e.target.value });
-    setValue(e.target.value);
+    setVal(e.target.value);
   }
 
   return (
@@ -18,7 +18,7 @@ function Input({ label, name, type = "text", onChange }) {
         name={name}
         className={className}
         onChange={onInputChange}
-        value={value}
+        value={val || value}
       />
     </div>
   );

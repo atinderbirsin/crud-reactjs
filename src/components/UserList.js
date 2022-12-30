@@ -1,8 +1,8 @@
 import User from "./User";
 
-function UserList({ users, onDelete }) {
+function UserList({ users, onDelete, onUpdate }) {
   const renderedList = users.map((user, index) => {
-    return <User user={user} key={index} onDelete={onDelete} />;
+    return <User user={user} key={index} onDelete={onDelete} onUpdate={onUpdate}/>;
   });
 
   return (
