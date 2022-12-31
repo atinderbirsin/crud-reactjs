@@ -1,8 +1,17 @@
+import { useEffect } from "react";
+import useUserHook from "../hooks/use-user-hook";
 import User from "./User";
 
-function UserList({ users, onDelete, onUpdate }) {
+function UserList() {
+    const { users, getUsers } = useUserHook();
+
+    useEffect(() => {
+        getUsers();
+    }, [getUsers])
+
   const renderedList = users.map((user, index) => {
-    return <User user={user} key={index} onDelete={onDelete} onUpdate={onUpdate}/>;
+    // return <User user={user} key={index} onDelete={onDelete} onUpdate={onUpdate}/>;
+    return <User user={user} key={user._id} />
   });
 
   return (
