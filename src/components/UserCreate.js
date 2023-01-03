@@ -1,7 +1,9 @@
 import { useState } from "react";
+import useUserHook from "../hooks/use-user-hook";
 import Input from "./Input";
 
-function UserCreate({ onSubmit }) {
+function UserCreate() {
+  const { createUser } = useUserHook();
   const [user, setUser] = useState({});
 
   function onInputChange(value) {
@@ -11,7 +13,7 @@ function UserCreate({ onSubmit }) {
   function onFormSubmit(e) {
     e.preventDefault();
 
-    onSubmit(user);
+    createUser(user);
   }
 
   return (

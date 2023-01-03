@@ -1,8 +1,10 @@
 import { useState } from "react";
+import useUserHook from "../hooks/use-user-hook";
 import Input from "./Input";
 
-function User({ user, onDelete, onUpdate }) {
+function User({ user }) {
   const className = `border border-2 border-white text-white h-44 rounded-md flex flex-col items-center`;
+  const { updateUser, deleteUser } = useUserHook();
 
   const [isClicked, setIsClicked] = useState(false);
   const [userInfo, setUserInfo] = useState({ ...user });
@@ -14,7 +16,7 @@ function User({ user, onDelete, onUpdate }) {
   function onFormSubmit(e) {
     e.preventDefault();
 
-    onUpdate(userInfo);
+    updateUser(userInfo);
     setIsClicked(!isClicked);
   }
 
@@ -29,7 +31,7 @@ function User({ user, onDelete, onUpdate }) {
             ></i>
             <i
               className="fa fa-minus-circle"
-              onClick={() => onDelete(user._id)}
+              onClick={() => deleteUser(user._id)}
             ></i>
           </div>
         </div>
@@ -38,6 +40,7 @@ function User({ user, onDelete, onUpdate }) {
           <h2>{user.fullName}</h2>
         </div>
       </div>
+      
       <div
         className={`w-full z-40 bg-slate-500 absolute ${
           !isClicked ? "hidden" : ""
